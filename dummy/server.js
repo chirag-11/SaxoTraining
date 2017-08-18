@@ -26,7 +26,6 @@ app.get("/bvc", function (req, res) {
 
 app.post('/Post', function (req, res) {
     let fileData;
-    console.log(req.body);
     fs.readFile('data/data.json', 'utf-8', function (err, data)   {
           newdata = JSON.parse(data);
           let edited = req.body;
@@ -39,7 +38,7 @@ app.post('/Post', function (req, res) {
           fs.writeFile('data/data.json', JSON.stringify(newdata), function (err)       {
               if  (err)
                 return  console.log(err);
-                console.log('Completed');
+               res.send(newdata);
           });
     });
 });

@@ -5,18 +5,18 @@ export default class Details extends React.Component {
 
     constructor(props) {
         super(props);
-        
+
         this.state = {
-            alldata: [],
             temp: {},
-            showModal: false
+            current: {},
+            showModal: false,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleSaveClick = this.handleSaveClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
-    
+
     handleClick(evt) {
         let temp1 = Object.assign({}, this.props.country);
         this.setState({
@@ -41,28 +41,12 @@ export default class Details extends React.Component {
         this.setState({
             showModal: false
         });
-        let  temp1 = Object.assign({}, this.state.temp);
+        let temp1 = Object.assign({}, this.state.temp);
 
         this.setState({
             current: temp1
-        });
-        let  obj = this.state.temp;
-        return new Promise(function (resolve, reject) {
-            let  xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function () {
-                if (this.readyState == 4 && this.status == 200) {
-                    resolve(xhttp.responseText);
-                }
-            };
-            xhttp.open("POST", "http://localhost:3000/Post", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            let  data = Object.keys(obj).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(obj[key])).join('&');
-
-            xhttp.send(data);
-        });
-
-
-
+        })
+        this.props.SaveData(temp1);
     }
 
     handleChange(evt) {
@@ -77,7 +61,7 @@ export default class Details extends React.Component {
 
     render() {
         return (
-               <div id="details">
+            <div id="details">
                 <div className="container">
                     <h2>Panels with Contextual Classes</h2>
                     <div className="panel-group">

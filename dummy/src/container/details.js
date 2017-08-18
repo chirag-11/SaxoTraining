@@ -11,7 +11,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-    GetData: () => dispatch(stateActions.GetData())
+    GetData: () => dispatch(stateActions.GetData()),
+    SaveData: (curr) => dispatch(stateActions.SaveData(curr)),
 });
 
 class DetailsContainer extends React.Component {
@@ -29,16 +30,16 @@ class DetailsContainer extends React.Component {
         }
         else {
             let id = this.props.match.params.id;
-            this.setState({ current: this.props.country[id-1] });
+            this.setState({ current: this.props.country[id - 1] });
         }
     }
-    componentWillReceiveProps(props){
-          let id = props.match.params.id;
-            this.setState({ current: props.country[id-1] });
+    componentWillReceiveProps(props) {
+        let id = props.match.params.id;
+        this.setState({ current: props.country[id - 1] });
     }
     render() {
         return (
-            <Details country={this.state.current} />
+            <Details country={this.state.current} SaveData={this.props.SaveData} />
         );
     }
 }

@@ -13,3 +13,10 @@ export function StoreData()
             type:types.STORE_DATA
     };
 }
+export function SaveData(curr)
+{
+    return {
+        type:types.SAVE_DATA,
+        current:curr
+    }
+}
