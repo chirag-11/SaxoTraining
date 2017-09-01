@@ -1,0 +1,127 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+//quens 1
+
+// var singelton = (function(){
+//     var instance ;
+
+//     function createInstance(){
+// var obj= new Object("hello")
+// return obj;
+//     }
+
+// var getinstance= function(){
+//         if(!instance)
+//         {
+//             instance=createInstance();
+//         }
+//         return instance;
+//     }
+//     return { getInstance:getInstance
+// };
+
+// })();
+
+// var a=singelton.getInstance()
+
+// var b=singelton.getInstance()
+
+// if(a===b)
+// {
+// true;
+// }
+// else{
+// false;
+// }
+
+
+//generator function return 10 number as square quesn 3 
+// function* process(){
+//     yield 8000;
+//     var arr=[1,2,3,4,5,6,7,8,9];
+//     for(var i=0;i<10;i++)
+//     {
+//         yield arr[i]*arr[i];
+//     }
+
+// }
+//  let it=process();
+//  for(var j=0;j<10;j++)
+//  {
+//      console.log(it.next());
+//  }
+
+// normal arrow function and print this quesn 5
+
+
+// let obj=new Object();
+// obj={
+//    a:1,
+//    print(){
+//        obj.c;
+// document.addEventListener('click',()=>console.log(this));
+//    },
+//    c:console.log(this)
+
+// }
+// let obj1=obj.print();
+
+
+/// quesn 2 square of first 10 number using iterator
+var id=0; 
+ var obj={id,logic:function() {return this.id*this.id;},final:10,total:0}; 
+
+ let ids={
+        [Symbol.iterator](obj){
+            id:obj.id;
+            
+            return{
+                next()
+                {
+                    if(obj.final===obj.total)
+                    {
+                         return {value:-1,done:false};
+                    }
+                   
+
+                    if((obj.total<obj.final))
+                    {
+                       
+                        obj.total++;
+                        obj.id++;
+                         return {value:obj.logic(),done:false};
+                    }
+                    
+                    
+                    
+                    
+                }
+            };
+        }
+    };
+
+ let it=ids[Symbol.iterator](obj);
+
+        while(true)
+        {
+           var itObj=it.next();
+            if(itObj.value===-1)
+            {
+                break;
+            }
+            else if(itObj.value)
+            {
+                console.log(itObj.value);
+            }
+           
+        }
+
+
+</script>
+
+</body>
+</html>

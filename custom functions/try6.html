@@ -1,0 +1,24 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+'use strict';
+
+//parameter type of rest ...
+// var log1=Function(id,...hobby)
+// {
+//     console.log(hobby instanceof Array);
+// };
+
+// log1(1,'cr','socc');
+
+
+var log2=new Function('...hobb','return hobb;');
+console.log(log2('cricket','soccer'));
+
+</script>
+
+</body>
+</html>

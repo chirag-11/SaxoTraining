@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>
+shopping cart
+</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<
+<style type="text/css">
+	#container{
+		border:1px grey solid;
+		width :400px;
+		height:400px;
+		margin:20px;
+		margin-right: 20px;
+		text-align: center;
+		position: fixed;
+		left:60%;
+	}
+	#menulist{
+
+border:1px grey solid;
+		width :400px;
+		height:400px;
+		margin:20px;
+		margin-right: 20px;
+		text-align: center;
+		position: fixed;
+		left:10%;
+	}
+
+	.item
+	{
+		font-size:25px;
+		border:3px grey solid;
+		text-align: center;
+		margin:10px;}
+
+	#total{
+		border:1px grey solid;
+		width :400px;
+		height:120px;
+		margin:20px;
+		margin-right: 20px;
+		text-align: center;
+		position: fixed;
+		bottom:4%;
+		left:30%;
+
+	}
+
+</style>
+<div id="container" ondrop="dropToCart(event)" ondragover="dragOver(event)">
+	ADD TO CART
+</div>
+<div id="menulist" ondrop="dropToMenu(event)" ondragover="dragOver(event)" >
+<h2>MENU LIST</h2>
+<div id="1" draggable="true" ondragstart="dragStart(event)" class="item">
+ITEM A  
+PRICE :<span>$150</span>
+</div>
+
+<div id="2" class="item" draggable="true" ondragstart="dragStart(event)" >
+ITEM B  
+PRICE: <span>$250</span>
+</div>
+
+<div id="3" class="item" draggable="true" ondragstart="dragStart(event)" >
+ITEM C  
+PRICE : <span>$350</span>
+</div>
+
+<div id="4" class="item" draggable="true" ondragstart="dragStart(event)">
+ITEM D  
+PRICE: <span>$100</span>
+</div>
+
+
+</div>
+
+<div id="total" >
+<p>totalvalue:<span id="totalvalue"></span>
+</p><br>
+<p>totalitem:<span id="totalitem"></span>
+</p></div>
+<script type="text/javascript">
+	function dragStart(event)
+	{
+
+event.dataTransfer.setData('id',event.target.id);
+event.dataTransfer.setData('parent',event.target.offsetParent.id);
+	}
+	function dropToMenu(event)
+	{
+		debugger;
+			var destinationid=event.target.id;
+		var destination=document.getElementById(destinationid);
+		var parid=event.dataTransfer.getData('parent');
+		var par=document.getElementById(parid);
+		var draggedelementid=event.dataTransfer.getData('id');
+		var draggedelement=document.getElementById(draggedelementid);
+		
+	
+	if(parid==="menulist")
+	{
+		debugger;
+		var tempdest=document.createElement("div");
+		var tempsrc=document.createElement("div");
+		par.insertBefore(tempsrc,draggedelement);
+    	par.insertBefore(tempdest,destination);
+		par.insertBefore(destination,tempsrc);
+        par.insertBefore(draggedelement,tempdest);
+ 		par.removeChild(tempsrc);
+    	par.removeChild(tempdest);
+	}
+	else{
+		
+		var value=$('#'+draggedelementid).find('span').html();
+		value=value.substring(1,value.length);
+		updatelist(value,'decrease');
+		event.currentTarget.appendChild(draggedelement);
+	}}
+	function dropToCart(event)
+	{
+		var destinationid=event.target.id;
+		var destination=document.getElementById(destinationid);
+		var parid=event.dataTransfer.getData('parent');
+		var par=document.getElementById(parid);
+		var draggedelementid=event.dataTransfer.getData('id');
+		var draggedelement=document.getElementById(draggedelementid);
+		if(parid==="menulist"){
+	
+		
+		var value=$('#'+draggedelementid).find('span').html();
+		value=value.substring(1,value.length);
+		updatelist(value,'increase');
+		
+		event.currentTarget.appendChild(draggedelement);
+		}
+		else
+		{
+		var tempdest=document.createElement("div");
+		var tempsrc=document.createElement("div");
+		par.insertBefore(tempsrc,draggedelement);
+    	par.insertBefore(tempdest,destination);
+ 	    par.insertBefore(destination,tempsrc);
+        par.insertBefore(draggedelement,tempdest);
+		par.removeChild(tempsrc);
+    	par.removeChild(tempdest);
+			
+		}
+		
+	}
+	function dragOver(event)
+	{
+		event.preventDefault();
+	}
+
+	function updatelist(value,operation)
+	{
+		var totalvalue=$('#totalvalue');
+		var totalitem=$('#totalitem');
+		var temptotal;
+		var temptotalitem; 
+	if(operation==='increase'){
+		
+		var a=$('#totalvalue').html();
+		if(a.length>0){
+		temptotal=parseInt($('#totalvalue').html())+parseInt(value);
+		temptotalitem=parseInt($('#totalitem').html())+1;
+		}
+		else{
+		temptotal=parseInt(value);
+		temptotalitem=parseInt(1);
+		}
+	}
+	else if(operation==='decrease')
+	{	
+	
+		var test=parseInt($('#totalvalue').html());
+		
+		temptotal=parseInt($('#totalvalue').html())-parseInt(value);
+		temptotalitem=parseInt($('#totalitem').html())-1;
+		
+    }
+  
+	totalvalue.html(temptotal);
+	totalitem.html(temptotalitem);
+	}
+
+</script>
+
+</body>

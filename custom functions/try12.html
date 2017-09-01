@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+
+
+// 'use strict';
+// let Blog= function(){};
+// let blog=new Blog();
+// console.log(blog.toString());
+// Blog.prototype[Symbol.toStringTag]='Blogclass';
+
+// let blog2=new Blog();
+// console.log(blog2.toString());
+
+
+
+let values=[8,12,14];
+console.log([].concat(values));
+
+values[Symbol.isConcatSpreadable]=false;
+console.log([].concat(values));
+
+</script>
+
+</body>
+</html>

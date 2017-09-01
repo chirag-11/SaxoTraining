@@ -1,0 +1,51 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+'use strict';
+// let eventsymbol= Symbol('sjhbfj');
+// let eventsymbol1= Symbol('sjhbfj');
+
+// console.log(typeof eventsymbol);
+//  console.log(eventsymbol.toString());
+//  if(eventsymbol===eventsymbol1)
+// {
+//      console.log("they are same");
+//  }
+//  else{
+
+//      console.log("not same");
+//  }
+// console.log(eventsymbol);
+
+
+// let s=Symbol.for('event');
+// let s1=Symbol.for('event');
+// if(s===s1)
+// {
+//      console.log("they are same");
+//  }
+//  else{
+
+//      console.log("not same");
+//  }
+// let article ={
+//     title:'whiteface',
+//     [Symbol.for('article')]:'myarticle'};
+//     let value=article[Symbol.for('article')];
+// console.log(value);
+
+
+
+let article ={
+    title:'whiteface',
+    [Symbol.for('article')]:'myarticle'};
+    console.log(Object.getOwnPropertySymbols(article));
+    console.log(Object.getOwnPropertyNames(article));
+
+</script>
+
+</body>
+</html>

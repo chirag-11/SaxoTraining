@@ -1,0 +1,25 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+
+
+'use strict';
+let values=[8,12,16];
+let sum=values + 100;
+console.log(sum);
+
+values[Symbol.toPrimitive]=function(hint){
+    console.log(hint);
+    return 42;
+};
+
+let sum2=values+100;
+console.log(sum2);
+
+</script>
+
+</body>
+</html>

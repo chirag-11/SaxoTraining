@@ -1,0 +1,38 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+// class Person {
+//     showid(){
+//         console.log('100');
+//     }
+// }
+// let person =new Person();
+// console.log(typeof Person);
+// console.log(typeof person);
+// console.log(person instanceof Person);
+// person.showid();
+// console.log(person.showid===Person.prototype.showid);
+
+
+
+debugger;
+
+class Person{
+    constructor(){
+        console.log("construction called");
+    }
+   
+}
+class anotherperson extends Person{
+    constructor(){
+        super();
+        console.log('constructing another person');
+    }
+}
+
+</script>
+
+</body>
+</html>

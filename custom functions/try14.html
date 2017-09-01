@@ -1,0 +1,58 @@
+<html>
+<head>
+</head>
+<body>
+<script type="text/javascript">
+
+// let ids=[4334,454,343];
+// let it=ids[Symbol.iterator]();
+
+// console.log(typeof ids[Symbol.iterator]);
+
+// console.log(it.next());
+
+// console.log(it.next());
+
+// console.log(it.next());
+
+// console.log(it.next());
+
+
+
+var iterable = function(num,fun) {
+return{
+    next:(function(){
+        var init=800;
+        var count=0;
+        return function(){
+            if(count==num)
+            {
+                return (value:undefined,done:true)
+            }
+        };
+    })
+};
+}
+
+let idmaker={
+    [Symbol.iterator](){
+        let nextid=8000;
+        return{
+            next(){
+                return {
+                    value:nextid++,done:false
+                };
+            }
+        };
+    }
+    
+};
+
+let it =idmaker[Symbol.iterator]();
+console.log(it.next().value);
+console.log(it.next().value);
+
+</script>
+
+</body>
+</html>
